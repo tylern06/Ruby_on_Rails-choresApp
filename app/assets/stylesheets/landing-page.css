@@ -35,7 +35,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(http://ironsummitmedia.github.io/startbootstrap-landing-page/img/intro-bg.jpg) no-repeat center center;
+    background-image: url('app.jpg');
     background-size: cover;
 }
 
@@ -116,8 +116,9 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(http://ironsummitmedia.github.io/startbootstrap-landing-page/img/banner-bg.jpg) no-repeat center center;
-    background-size: cover;
+    /*/assets/images route is implicit*/
+    background-image: url('nightsky.jpg');
+   /* background-size: cover;*/
 }
 
 .banner h2 {

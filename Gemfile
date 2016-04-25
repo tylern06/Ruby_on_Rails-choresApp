@@ -19,3 +19,6 @@ end
 group :production do
   gem 'rails_12factor'
 end
+gem 'hirb'
+
+gem 'bcrypt', '~> 3.1.7'

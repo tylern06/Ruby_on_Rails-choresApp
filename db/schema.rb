@@ -11,10 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425230016) do
+ActiveRecord::Schema.define(version: 20160425231102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chores", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "rate"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "status"
+    t.integer  "client_id"
+    t.integer  "contractor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chores", ["client_id"], name: "index_chores_on_client_id", using: :btree
+  add_index "chores", ["contractor_id"], name: "index_chores_on_contractor_id", using: :btree
+
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.float    "rating"
+    t.integer  "contractor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clients", ["contractor_id"], name: "index_clients_on_contractor_id", using: :btree
+
+  create_table "requests", force: true do |t|
+    t.integer  "client_id"
+    t.integer  "contractor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "requests", ["client_id"], name: "index_requests_on_client_id", using: :btree
+  add_index "requests", ["contractor_id"], name: "index_requests_on_contractor_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

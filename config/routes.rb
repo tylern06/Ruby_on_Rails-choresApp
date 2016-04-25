@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
-  devise_for :users
+  root 'sessions#index'
+  resources :clients, :contractors, :sessions, :requests
+  # devise_for :users
 end
+  
