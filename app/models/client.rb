@@ -6,7 +6,6 @@ class Client < ActiveRecord::Base
 	has_many :networks, dependent: :destroy
 
   # belongs_to :contractor
-
-  has_secure_password
+	has_secure_password
   
 end

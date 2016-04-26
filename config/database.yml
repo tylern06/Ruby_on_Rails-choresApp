@@ -18,6 +18,10 @@ development:
   encoding: unicode
   database: choresApp_development
   pool:     5
+<<<<<<< HEAD
+=======
+  template: template0
+>>>>>>> origin/client
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -43,6 +47,10 @@ test:
   encoding: unicode
   database: choresApp_test
   pool:     5
+<<<<<<< HEAD
+=======
+  template: template0
+>>>>>>> origin/client
 
 production:
   adapter:  postgresql
@@ -50,3 +58,7 @@ production:
   encoding: unicode
   database: choresApp_production
   pool:     5
+<<<<<<< HEAD
+=======
+  template: template0
+>>>>>>> origin/client
