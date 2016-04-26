@@ -14,8 +14,11 @@
   <body>
     <header>
       <%= render 'layouts/navigation' unless current_page?(root_path) %>
-    </header>
-      <%= render 'layouts/messages' %>
-      <%= yield %>
+      <div id='container2'>
+        </header>
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+      </div>
   </body>
 </html>
+

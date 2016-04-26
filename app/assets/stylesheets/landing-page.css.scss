@@ -35,8 +35,10 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background-image: url('app.jpg');
+    background-image: url('app2.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 
 .intro-message {
@@ -118,6 +120,7 @@ h6 {
     color: #f8f8f8;
     /*/assets/images route is implicit*/
     background-image: url('nightsky.jpg');
+    /*background-image: center;*/
    /* background-size: cover;*/
 }
 

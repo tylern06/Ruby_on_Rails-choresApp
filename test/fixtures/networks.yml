@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_id: 
+  contractor_id: 
+  chores_id: 
+
+two:
+  client_id: 
+  contractor_id: 
+  chores_id: 

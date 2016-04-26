@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425231102) do
+ActiveRecord::Schema.define(version: 20160426171628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,13 +47,27 @@ ActiveRecord::Schema.define(version: 20160425231102) do
 
   add_index "clients", ["contractor_id"], name: "index_clients_on_contractor_id", using: :btree
 
+  create_table "networks", force: true do |t|
+    t.integer  "client_id"
+    t.integer  "contractor_id"
+    t.integer  "chores_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "networks", ["chores_id"], name: "index_networks_on_chores_id", using: :btree
+  add_index "networks", ["client_id"], name: "index_networks_on_client_id", using: :btree
+  add_index "networks", ["contractor_id"], name: "index_networks_on_contractor_id", using: :btree
+
   create_table "requests", force: true do |t|
     t.integer  "client_id"
     t.integer  "contractor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chore_id"
   end
 
+  add_index "requests", ["chore_id"], name: "index_requests_on_chore_id", using: :btree
   add_index "requests", ["client_id"], name: "index_requests_on_client_id", using: :btree
   add_index "requests", ["contractor_id"], name: "index_requests_on_contractor_id", using: :btree
 
