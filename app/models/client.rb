@@ -1,5 +1,7 @@
 class Client < ActiveRecord::Base
-	has_and_belongs_to_many :contractors, class_name: 'Client', foreign_key:'contractor_id'
+	has_many :requests
+	has_many :contractors, class_name: 'Client', foreign_key:'contractor_id', :through => :requests
+  has_many :contractors
   belongs_to :contractor
   has_secure_password
   
