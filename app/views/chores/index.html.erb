@@ -1,149 +1,71 @@
 <html>
 	<head>
-
+	<!-- google map api for search box to get location,addresses -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGnq_fwNZCytzP1F5UVYVrMwNOFrZZjwk&libraries=geometry,places,visualization"></script>
-		<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
-		<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
+		
 		<script>
 			$(document).ready(function(){
 				$.getJSON("http://ip-api.com/json/?callback=?", function(data) {
 		        table_body = "";
 		        // console.log("Hi", data)
 		        table_body += data.city
-		         // $scope.locate = data.city
-		        console.log(table_body);
+		        // console.log(table_body);
 						longing = data.lon
 				    latty = data.lat
 				});
+
+				//Get lat/long of each address using Google Geocode API
+				var address = '5027 35th Ave. S. Seattle, WA';
+				var url = "http://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(address)+"&sensor=true";
+				$.getJSON(url, function(data) {
+			   if(data.status !== "OK") {
+			      var lat = "";
+			      var long = "";
+			      var error = "Address not found!";
+			    } else {
+			       lat2 = data.results[0].geometry.location.lat;
+			       long2 = data.results[0].geometry.location.lng;
+			      var address = data.results[0].formatted_address;
+			   }
+			   $( ".result" ).html("<h1>" + lat2 + long2 + "</h1>" );
+			 	});
 			});
 		</script>
 	</head>
 	<body>
-		<div class='row'>
-			<div style='width: 800px;'>
-			  <div id="map" style='width: 800px; height: 400px;'></div>
+	<!-- 	<div class='result'>
+		</div> -->
+		<div class='row' id="content">
+			<div class='col-md-8 nopadding1' id='map2'>
+				<div id="map" style='width: 100%; height: 850px;'></div>
+				<div id="floating-panel">
+					 <input id="pac-input" class="controls" type="text" placeholder="City, Address, ZIP">
+					 <input type='submit' value='Search'>
+				</div>
 			</div>
-			<div id="floating-panel">
-				 <input style='margin-left:15px'id="pac-input" class="controls" type="text" placeholder="Search Box">
-			</div>
-
-		<!-- 	<div id="map-container">
-			  <div id="map-canvas"></div>
-			</div> -->
+			<div class='col-md-4 nopadding2'>
+					<div class="panel-heading" id='chores'><h4>Chores</h4></div>
+			<table class="table table-hover">
+			  <thead>
+			  	<td>#</td>
+			  	<td>Name</td>
+			  	<td>Description</td>
+			  	<td>Location</td>
+			  	<td>Pay</td>
+			  </thead>
+			  <tbody>
+			  	<td>1</td>
+			  	<td>Walking the dog</td>
+			  	<td>Please walk my dog around the park</td>
+			  	<td>Gaswork Park</td>
+			  	<td>$50</td>
+			  </tbody>
+			</table>
 		</div>
 	</body>
-
-	<script type="text/javascript">
-			var map, heatmap;
-			function initMap() {
-			  map = new google.maps.Map(document.getElementById('map'), {
-			    zoom: 12,
-			    center: {
-			      // lat: 37.775,
-			      // lng: -122.434
-			      lat: latty,
-			      lng: longing
-			    },
-			    mapTypeId: google.maps.MapTypeId.MAP
-			  });
-			  heatmap = new google.maps.visualization.HeatmapLayer({
-			    data: getPoints(),
-			    map: map
-			  });
-			}
-			
-			function getPoints() {
-			  return [
-			  	new google.maps.LatLng(47.610018, -122.196475),
-			  	new google.maps.LatLng(47.610018, -122.196475),
-			  	new google.maps.LatLng(37.786660, -122.421033)
-			  ];
-			}
-			// This example adds a search box to a map, using the Google Place Autocomplete
-			// feature. People can enter geographical searches. The search box will return a
-			// pick list containing a mix of places and predicted search terms.
-			// This example requires the Places library. Include the libraries=places
-			// parameter when you first load the API. For example:
-			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-			function initAutocomplete() {
-			  /* map = new google.maps.Map(document.getElementById('map'), {
-			    center: {
-			      lat: -33.8688,
-			      lng: 151.2195
-			    },
-			    zoom: 13,
-			    mapTypeId: google.maps.MapTypeId.ROADMAP
-			  }); */
-			  // Create the search box and link it to the UI element.
-			  var input = document.getElementById('pac-input');
-			  var searchBox = new google.maps.places.SearchBox(input);
-			  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-			  // Bias the SearchBox results towards current map's viewport.
-			  map.addListener('bounds_changed', function() {
-			    searchBox.setBounds(map.getBounds());
-			  });
-			  var markers = [];
-			  // Listen for the event fired when the user selects a prediction and retrieve
-			  // more details for that place.
-			  searchBox.addListener('places_changed', function() {
-			    var places = searchBox.getPlaces();
-			    if (places.length == 0) {
-			      return;
-			    }
-			    // Clear out the old markers.
-			    markers.forEach(function(marker) {
-			      marker.setMap(null);
-			    });
-			    markers = [];
-			    // For each place, get the icon, name and location.
-			    var bounds = new google.maps.LatLngBounds();
-			    places.forEach(function(place) {
-			      var icon = {
-			        url: place.icon,
-			        size: new google.maps.Size(71, 71),
-			        origin: new google.maps.Point(0, 0),
-			        anchor: new google.maps.Point(17, 34),
-			        scaledSize: new google.maps.Size(25, 25)
-			      };
-			      // Create a marker for each place.
-			      markers.push(new google.maps.Marker({
-			        map: map,
-			        icon: icon,
-			        title: place.name,
-			        position: place.geometry.location
-			      }));
-			      if (place.geometry.viewport) {
-			        // Only geocodes have viewport.
-			        bounds.union(place.geometry.viewport);
-			      } else {
-			        bounds.extend(place.geometry.location);
-			      }
-			    });
-			    map.fitBounds(bounds);
-			  });
-			}
-		
-			google.maps.event.addDomListener(window, 'load', function() { 
-				initMap();
-				initAutocomplete()
-			});
-		// handler = Gmaps.build('Google');
-		// handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		//   markers = handler.addMarkers([
-		//     {
-		//       "lat": 47.608013,
-		//       "lng": -122.335167,
-		//       "picture": {
-		//         "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-		//         "width":  32,
-		//         "height": 32
-		//       },
-		//       "infowindow": "hello!"
-		//     }
-		//   ]);
-		//   handler.bounds.extendWith(markers);
-		//   handler.fitMapToBounds();
-		// });
-	</script>
-
+	<%= render 'layouts/googlemaps' %>
 </html>
+
+
+				
+

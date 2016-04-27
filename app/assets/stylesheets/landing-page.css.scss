@@ -17,6 +17,7 @@ h3,
 h4,
 h5,
 h6 {
+
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
@@ -35,12 +36,15 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background-image: url('app2.jpg');
+    background-image: url('packingdark.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
 }
 
+#slogan{
+    font-size: 50px;
+}
 .intro-message {
     position: relative;
     padding-top: 20%;
@@ -87,6 +91,14 @@ h6 {
     }
 }
 
+/*.main-nav{
+    margin-top: 10px;
+}*/
+.social2 {
+    position: relative;
+    right: 400px;
+}
+
 .network-name {
     text-transform: uppercase;
     font-size: 14px;
@@ -119,9 +131,9 @@ h6 {
     padding: 100px 0;
     color: #f8f8f8;
     /*/assets/images route is implicit*/
-    background-image: url('nightsky.jpg');
-    /*background-image: center;*/
-   /* background-size: cover;*/
+    background-image: url('laundry.jpg');
+    background-image: center;
+    background-size: cover;
 }
 
 .banner h2 {
