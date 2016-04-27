@@ -1,22 +1,41 @@
 class RequestsController < ApplicationController
-  def index
-  end
+	def index
+		# @request = Request.create(contractor: Client.find(session[:user_id]), client: Client.find(Chore.client), chore: Chore.find(params[:id]))
+	end
 
-  def show
-  end
+	def show
+	end
 
-  def new
-  end
+	def new
+	end
 
-  def create
-  end
+	def create
+		session[:user_id] = 1
+		params[:id] = 1
+		if session[:user_id] != nil
 
-  def update
-  end
+			client = Chore.find(params[:id]).client
+			@request = Request.new(contractor: Client.find(session[:user_id]), client: client, chore: Chore.find(params[:id]))
+			puts '***********************'
+			puts @request.inspect
+			puts '***********************'
+			@request.valid?
+			@request.save
 
-  def edit
-  end
+		else
+			puts '-----------------------'
+			puts session[:user_id]
+			puts '-----------------------'
+		end
 
-  def destroy
-  end
+	end
+
+	def update
+	end
+
+	def edit
+	end
+
+	def destroy
+	end
 end
