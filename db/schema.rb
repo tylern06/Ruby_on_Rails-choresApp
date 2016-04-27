@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426171628) do
+ActiveRecord::Schema.define(version: 20160427190636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20160426171628) do
     t.integer  "contractor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
+    t.string   "city"
+    t.string   "address"
   end
 
   add_index "chores", ["client_id"], name: "index_chores_on_client_id", using: :btree

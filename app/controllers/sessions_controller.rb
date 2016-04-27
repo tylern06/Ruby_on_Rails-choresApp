@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
           redirect_to contractors_path
         end
       else 
-        flash[:logerrors] = ["Invalid combination"]
+        flash[:errors] = ["Invalid combination"]
         redirect_to :back
       end
   end
@@ -31,6 +31,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session.clear
+    redirect_to root_path
   end
 
   private

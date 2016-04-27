@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   def index
     @client_chores = Client.find(session[:user_id]).chores
+    @client = Client.find(session[:user_id])
   end
 
   def show
@@ -15,17 +16,19 @@ class ClientsController < ApplicationController
     if @client.save
       redirect_to sessions_path
     else
-      flash[:regerrors] = @client.errors.full_messages
+      flash[:errors] = @client.errors.full_messages
       redirect_to :back
     end
   end
 
   def update
-  Chore.find(params[:id]).update(chore_params)
-  
-  redirect_to clients_path
-
-
+    chore = Chore.update(Chore.find(params[:id]), chore_params)
+    if chore.valid?
+      redirect_to clients_path
+    else
+      flash[:errors] = chore.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def edit
@@ -40,6 +43,6 @@ class ClientsController < ApplicationController
       params.require(:client).permit(:name, :email, :password, :password_confirmation, :address, :city, :state, :rating, :contractor_id)
     end
     def chore_params
-      params.require(:chore).permit(:title, :description, :rate, :start, :end)
+      params.require(:chore).permit(:title, :description, :rate, :start, :end, :address, :city, :state)
     end 
 end

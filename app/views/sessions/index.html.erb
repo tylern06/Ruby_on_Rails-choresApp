@@ -1,3 +1,6 @@
+<!-- <link href="/assets/stylesheets/scrolling-nav.css.scss" media="screen" rel="stylesheet" /> -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
     <div class="container topnav">
@@ -9,19 +12,52 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="#">Home</a>
+            <img class="img-responsive" width='180' height='90' src="/assets/swept1.png" alt="">
+            <!-- <a class="navbar-brand topnav" href="#">Home</a> -->
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right main-nav">
+                 <li class="hidden">
+                    <a class="page-scroll" href="#page-top"></a>
+                 </li>
                 <li>
-                    <a href="#about">About</a>
+                    <a class="page-scroll" href="#home">Home</a>
                 </li>
                 <li>
-                    <a href="#services">Services</a>
+                    <a class="page-scroll" href="#services">Services</a>
                 </li>
                 <li>
-                    <a href="#contact">Contact</a>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a href='/clients/new'>Register</a>
+                </li>
+                <li class="dropdown" id="menuLogin">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+                    <div class="dropdown-menu" style="padding:17px;">
+                      <form action='/sessions' method='post' class="form" id="formLogin">
+                        <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> 
+                        <label for="Email">Email: </label>
+                        <input type="email" placeholder="Email" name='client[email]'>
+                        <p><label for="Password">Password: </label>
+                        <input type="password" placeholder="Password" name='client[password]'></p>
+                        <div class="radio">
+                            Login as:
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            Client
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            Contractor
+                          </label>
+                        </div>
+                        <input type="submit" value='Login'>
+                      </form>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -31,51 +67,27 @@
 </nav>
 
 <!-- Header -->
-<a name="about"></a>
+<section id="home" class="home-section">
+<!-- <a name="home"></a> -->
 <div class="intro-header">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="intro-message">
-                    <h1>Chores</h1>
-                    <h3>Get Stuff Done</h3>
-                    <hr class="intro-divider">
-                    <ul class="list-inline intro-social-buttons">
+                   <!--  <h1>SweptAway</h1> -->
+                    <p id="slogan">Get Your Chores Swept Away</p>
+                   <!--  <hr class="intro-divider"> -->
+                 <!--    <ul class="list-inline intro-social-buttons">
                         <li>
                             <a href="#loginClient" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                         </li>
-                        <li>
-                            <a href="#register" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                        </li>
-                    </ul>
-                    <h2><a href='/clients/new'>Register!</a></h2>
-                    <h2>Login</h2>
-                    <% if flash[:logerrors] %>
-                        <% flash[:logerrors].each do |error| %> 
+                    </ul> -->
+                    <% if flash[:errors] %>
+                        <% flash[:errors].each do |error| %> 
                             <h4 class='errors'><li><%= error %></li></h4>
                         <% end %>
                     <% end %>
-                    <form action='/sessions' method='post'>
-                        <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'>
-                        <label for="Email">Email address</label>
-                        <input type="email" placeholder="Email" name='client[email]'>
-                        <p><label for="Password">Password</label>
-                        <input type="password" placeholder="Password" name='client[password]'></p>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                            Login as client
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Login as contractor
-                          </label>
-                        </div>
-                        <input type="submit" value='Login'>
-                    </form>
                 </div>
             </div>
         </div>
@@ -84,11 +96,12 @@
     <!-- /.container -->
 
 </div>
+</section>
 <!-- /.intro-header -->
 
 <!-- Page Content -->
-
-<a  name="services"></a>
+<section id="services" class="services-section">
+<!-- <a  name="services"></a> -->
 <div class="content-section-a">
 
     <div class="container">
@@ -101,15 +114,16 @@
             </div>
             <div class="col-lg-5 col-lg-2 col-md-4">
                 <br>
-                <img class="img-responsive" width='350' height='100' src="/assets/dishes.jpg" alt="">
+                <img class="img-responsive" width='350' height='100' src="/assets/dish.png" alt="">
             </div>
         </div>
 
     </div>
     <!-- /.container -->
-
 </div>
+
 <!-- /.content-section-a -->
+
 
 <div class="content-section-b">
 
@@ -123,7 +137,7 @@
                 <p class="lead">Hire a someone to move your lawn while you get to do things that you love </p>
             </div>
             <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                <img class="img-responsive" src="/assets/lawn.jpg" alt="">
+                <img class="img-responsive" width='350' height='100' src="/assets/lawn.png" alt="">
             </div>
         </div>
 
@@ -145,7 +159,7 @@
                 <p class="lead">We'll walk your dog when your busy with work</p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="/assets/dogs.jpg" alt="">
+                <img class="img-responsive" width='350' height='100' src="/assets/dog.png" alt="">
             </div>
         </div>
 
@@ -153,10 +167,40 @@
     <!-- /.container -->
 
 </div>
+</section>
 <!-- /.content-section-a -->
 
-<a  name="contact"></a>
+<section id="contact" class="contact-section">
+<!-- <a  name="contact"></a> -->
+    <div class="banner">
 
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Connect with us</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons social2">
+                        <li>
+                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                      <!--   <li>
+                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li> -->
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+</section>
+    <!-- /.banner -->
 
 <!-- Footer-->
 <footer>
@@ -185,3 +229,6 @@
         </div>
     </div>
 </footer>
+
+</body>
+
