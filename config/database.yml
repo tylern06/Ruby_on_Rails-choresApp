@@ -18,6 +18,13 @@ development:
   encoding: unicode
   database: choresApp_development
   pool:     5
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  template: template0
+=======
+>>>>>>> master
+>>>>>>> master
 
 
   # Connect on a TCP socket. Omitted by default since the client uses a

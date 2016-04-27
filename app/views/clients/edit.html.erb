@@ -1,2 +1,41 @@
-<h1>Clients#edit</h1>
-<p>Find me in app/views/clients/edit.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="container">
+		<% if flash[:updatechore_errors] %>
+            <% flash[:updatechore_errors].each do |error| %> 
+                <h4 class='errors'><li><%= error %></li></h4>
+            <% end %>
+        <% end %>
+		<h2>Edit Chore</h2>
+		<form action="/clients/<%= @client_chore.id%>" method="post">
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			<input type="hidden" name="_method" value="patch">
+			<div class="form-group">
+				<label for="chore_name">Name:</label>
+				<input type="text" name="chore[title]" value='<%= @client_chore.title %>'class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="chore_description">Description:</label>
+				<textarea name="chore[description]" class="form-control" rows="4"><%= @client_chore.description%></textarea>
+			</div>
+			<div class="form-group">
+				<label for="chore_rate">Rate:</label>
+				<input type="number" step="0.01" name="chore[rate]" value='<%= @client_chore.rate %>' class="form-control"> 
+			</div>
+			<div class="form-group">
+				<label for="chore_start">Start: </label>
+				<input type="datetime" name="chore[start]" value='<%= @client_chore.start %>' class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="chore_end">End: </label>
+				<input type="datetime-local" name="chore[end]" value='<%= @client_chore.end %>' class="form-control">
+			</div>
+			 <button type="submit" class="btn btn-default">Update</button>
+		</form>
+	</div>
+</body>
+</html>

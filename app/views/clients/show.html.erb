@@ -1,2 +1,33 @@
-<h1>Clients#show</h1>
-<p>Find me in app/views/clients/show.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class='container'>
+		<h2>Name of Chore</h2>
+		<table class="table">
+			<tr>
+				<th>Name: </th>
+				<td><a href='/clients/<%= @client_chore.id %>/edit'><%= @client_chore.title %></a></td>
+			</tr>
+			<tr>
+				<th>Description: </th>
+				<td><%= @client_chore.description %></td>
+			</tr>
+			<tr>
+				<th>Rate: </th>
+				<td>$ <%= @client_chore.rate %></td>
+			</tr>
+			<tr>
+				<th>Start: </th>
+				<td><%= @client_chore.start %></td>
+			</tr>
+			<tr>
+				<th>End: </th>
+				<td><%= @client_chore.end %></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
