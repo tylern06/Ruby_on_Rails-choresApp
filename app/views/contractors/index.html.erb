@@ -1,35 +1,3 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <div class="container topnav">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand topnav" href="#">Home</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#about">About</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
 
 <!DOCTYPE html>
 <html>
@@ -55,10 +23,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><a href="">Mow the lawn</a></td>
-					<td>pending</td>
-				</tr>
+				<% if @acceptedrequests %>
+				<% @acceptedrequests.each do |accept| %>
+					<tr>
+						<td><a href="/chores/<%= accept.chore.id %>"><%= accept.chore.title %></a></td>
+						<td>
+						<%= accept.chore.status %>&nbsp;
+						<% if accept.chore.status == "In Progress" %>
+							<form action="/chores/<%= accept.chore.id %>" method="post" style="display:inline-block;">
+								<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+								<input type="hidden" name="_method" value="patch">
+								<button type="submit">Completed</button>
+							</form>
+						<% end %>
+						</td>
+					</tr>
+				<% end %>
+				<% end %>
 			</tbody>
 		</table>  
 	</div>
@@ -68,14 +49,16 @@
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Status/Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><a href="">Walk the dog</a></td>
-					<td>pending</td>
-				</tr>
+				<% if @pendingrequests %>
+				<% @pendingrequests.each do |pending| %>
+					<tr>
+						<td><a href="/chores/<%= pending.chore.id %>"><%= pending.chore.title %></a></td>
+					</tr>
+				<% end %>
+				<% end %>
 			</tbody>
 		</table>
 	</div>

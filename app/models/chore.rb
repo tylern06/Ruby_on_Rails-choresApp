@@ -2,6 +2,7 @@ class Chore < ActiveRecord::Base
   belongs_to :client
   belongs_to :contractor, class_name:"Client"
   belongs_to :request
+  belongs_to :network
 
   validates :title, :description, :rate, :start, :end, :presence => true
   # validate :future_event

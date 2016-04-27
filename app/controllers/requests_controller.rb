@@ -10,8 +10,8 @@ class RequestsController < ApplicationController
 	end
 
 	def create
-		session[:user_id] = 1
-		params[:id] = 1
+		session[:user_id] = 3
+		params[:id] = 2
 		if session[:user_id] != nil
 
 			client = Chore.find(params[:id]).client

@@ -8,6 +8,7 @@ class ChoresController < ApplicationController
   end
 
   def show
+    @chore = Chore.find(params[:id])
   end
 
   def new
@@ -28,13 +29,13 @@ class ChoresController < ApplicationController
   end
 
   def update
-  end
-
-  def show
+    Chore.find(params[:id]).update(status:"Completed")
+    redirect_to '/contractors'
   end
 
   def destroy
   end
+  
 
   private
     def chore_params

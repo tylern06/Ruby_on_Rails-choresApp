@@ -26,3 +26,4 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'gmaps4rails'
 
 # gem 'geocoder'
+gem 'velocityjs-rails'

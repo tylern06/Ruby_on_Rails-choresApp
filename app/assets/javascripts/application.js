@@ -16,4 +16,6 @@
 //= require bootstrap-sprockets
 //= require underscore
 //= require gmaps/google
+//= require scrolling-nav
+//= require jquery.easing.min
 //= require_tree .
