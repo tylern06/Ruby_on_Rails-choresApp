@@ -19,8 +19,11 @@ development:
   database: choresApp_development
   pool:     5
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   template: template0
 =======
+>>>>>>> master
 >>>>>>> master
 
 
