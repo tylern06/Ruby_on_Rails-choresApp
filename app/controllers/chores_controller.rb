@@ -1,5 +1,10 @@
 class ChoresController < ApplicationController
   def index
+    # @chores = Chore.all
+    # @hash = Gmaps4rails.build_markers(@chores) do |chore, marker|
+    #   marker.lat chore.client.address
+    #   marker.lng chore.client.address
+    # end
   end
 
   def show
@@ -19,10 +24,10 @@ class ChoresController < ApplicationController
     end
   end
 
-  def update
+  def edit
   end
 
-  def edit
+  def update
   end
 
   def destroy
