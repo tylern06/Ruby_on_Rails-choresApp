@@ -49,32 +49,33 @@
                             <a href="#register" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
                         </li>
                     </ul>
-                     <h2>Register</h2>
-                            <form action='/clients' method='post'>
-                                <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'>
-                                <p>Name <input type='text' name='client[name]'></p>
-                                <p>Email <input type='text' name='client[email]'></p>
-                                <p>Address <input type='text' name='client[address]'></p>
-                                <p>City <input type='text' name='client[city]'></p>
-                                <!-- <p>State <input type='text' name='client[state]'></p> -->
-                                <%= render 'layouts/states' %>
-                                <p>Password <input type='password' name='client[password]'></p>
-                                <p>*Password should be at least 8 characters</p>
-                                <p>Confirm Password <input type='password' name='client[password_confirmation]'></p>
-                                <input type='submit' value='Register'>
-                            </form>
-
-                                
-
-                            <h2>Login</h2>
-                            <form action='/sessions' method='post'>
-                                    <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'>
-                                    <label for="Email">Email address</label>
-                                    <input type="email" placeholder="Email" name='client[email]'>
-                                    <p><label for="Password">Password</label>
-                                    <input type="password" placeholder="Password" name='client[password]'></p>
-                                    <input type="submit" value='Login'>
-                            </form>
+                    <h2><a href='/clients/new'>Register!</a></h2>
+                    <h2>Login</h2>
+                    <% if flash[:logerrors] %>
+                        <% flash[:logerrors].each do |error| %> 
+                            <h4 class='errors'><li><%= error %></li></h4>
+                        <% end %>
+                    <% end %>
+                    <form action='/sessions' method='post'>
+                        <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'>
+                        <label for="Email">Email address</label>
+                        <input type="email" placeholder="Email" name='client[email]'>
+                        <p><label for="Password">Password</label>
+                        <input type="password" placeholder="Password" name='client[password]'></p>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            Login as client
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            Login as contractor
+                          </label>
+                        </div>
+                        <input type="submit" value='Login'>
+                    </form>
                 </div>
             </div>
         </div>
