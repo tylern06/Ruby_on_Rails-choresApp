@@ -1,44 +1,26 @@
 <script type="text/javascript">
+			var locations = [
+      ["Walking Dog, Pay: $25", 47.669874, -122.310221],
+      ['Moving Furniture, Pay: $50', 47.559866, -122.286499],
+      ['Mowing the Lawn, Pay: $75', 47.645631, -122.334353],
+      ['Washing Dishes, Pay: $10', 47.610377, -122.200679],
+      ['Deliver Take Out Order, Pay: $10', 47.620423, -122.349355]
+    ];
+
 			var map;
+			//initialize the Google Map in HTML document
 			function initMap() {
 			  map = new google.maps.Map(document.getElementById('map'), {
 			    zoom: 12,
 			    center: {
-			      // lat: 37.775,
-			      // lng: -122.434
 			      lat: latty,
 			      lng: longing
 			    },
 			    mapTypeId: google.maps.MapTypeId.MAP
 			  });
-			  heatmap = new google.maps.visualization.HeatmapLayer({
-			    data: getPoints(),
-			    map: map
-			  });
 			}
-			
-			function getPoints() {
-			  return [
-			  	// new google.maps.LatLng(47.610018, -122.196475),
-			  	// new google.maps.LatLng(47.610018, -122.196475),
-			  	// new google.maps.LatLng(37.786660, -122.421033)
-			  ];
-			}
-			// This example adds a search box to a map, using the Google Place Autocomplete
-			// feature. People can enter geographical searches. The search box will return a
-			// pick list containing a mix of places and predicted search terms.
-			// This example requires the Places library. Include the libraries=places
-			// parameter when you first load the API. For example:
-			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-			function initAutocomplete() {
-			  /* map = new google.maps.Map(document.getElementById('map'), {
-			    center: {
-			      lat: -33.8688,
-			      lng: 151.2195
-			    },
-			    zoom: 13,
-			    mapTypeId: google.maps.MapTypeId.ROADMAP
-			  }); */
+	
+		function initAutocomplete() {
 			  // Create the search box and link it to the UI element.
 			  var input = document.getElementById('pac-input');
 			  var searchBox = new google.maps.places.SearchBox(input);
@@ -86,27 +68,27 @@
 			    });
 			    map.fitBounds(bounds);
 			  });
+				  var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
 			}
-		
 			google.maps.event.addDomListener(window, 'load', function() { 
 				initMap();
 				initAutocomplete()
 			});
-		// handler = Gmaps.build('Google');
-		// handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		//   markers = handler.addMarkers([
-		//     {
-		//       "lat": 47.608013,
-		//       "lng": -122.335167,
-		//       "picture": {
-		//         "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-		//         "width":  32,
-		//         "height": 32
-		//       },
-		//       "infowindow": "hello!"
-		//     }
-		//   ]);
-		//   handler.bounds.extendWith(markers);
-		//   handler.fitMapToBounds();
-		// });
-	</script>
+</script>
+		
