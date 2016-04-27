@@ -4,12 +4,18 @@
 	<title></title>
 </head>
 <body>
-	<div class='container'>
-		<h2>Name of Chore</h2>
+	<div class="container" style="padding-top:50px;">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h3>Name of Chore:</h3></div>
+    <div class="panel-body">
 		<table class="table">
 			<tr>
 				<th>Name: </th>
 				<td><a href='/clients/<%= @client_chore.id %>/edit'><%= @client_chore.title %></a></td>
+			</tr>
+			<tr>
+				<th>Status: </th>
+				<td><%= @client_chore.status%></td>
 			</tr>
 			<tr>
 				<th>Description: </th>
@@ -27,7 +33,13 @@
 				<th>End: </th>
 				<td><%= @client_chore.end %></td>
 			</tr>
+			<tr>
+				<th></th>
+				<td><a href='/chores/<%= @client_chore.id %>' data-method='delete' data-confirm='Are you sure?'>Delete</a></td>
+			</tr>
 		</table>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

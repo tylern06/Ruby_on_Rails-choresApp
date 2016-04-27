@@ -3,7 +3,7 @@ class Chore < ActiveRecord::Base
   belongs_to :contractor, class_name:"Client"
   belongs_to :request
 
-  validates :title, :description, :rate, :start, :end, :presence => true
+  validates :title, :description, :rate, :start, :end, :address, :city, :state, :presence => true
   # validate :future_event
   # validate :date_validation
 

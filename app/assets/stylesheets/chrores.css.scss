@@ -1,19 +1,13 @@
 // Place all the styles related to the Chrores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/**{
-	overflow: hidden;
-}*/
+
 #floating-panel {
 	position: absolute;
 	top: 5px;
 	right: 20px;
 }
-
 #chores {
-	/*border: 1px solid black;
-	padding-top: 10px;*/
-/*	height: 800px;*/
 	text-align: center;
 	border-bottom: 1px solid lightgrey;
 }
@@ -40,3 +34,4 @@ html, body
 		height: 100%;
 		width: 100%;
 }
+
