@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20160427210035) do
     t.integer  "contractor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
+    t.string   "city"
+    t.string   "address"
   end
 
   add_index "chores", ["client_id"], name: "index_chores_on_client_id", using: :btree

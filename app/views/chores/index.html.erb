@@ -1,8 +1,6 @@
 <html>
 	<head>
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,300italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-		<!-- google map api for search box to get location,addresses -->
+	<!-- google map api for search box to get location,addresses -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGnq_fwNZCytzP1F5UVYVrMwNOFrZZjwk&libraries=geometry,places,visualization"></script>
 		
 		<script>
@@ -15,11 +13,9 @@
 						longing = data.lon
 				    latty = data.lat
 				});
-				// $.postJSON( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDGnq_fwNZCytzP1F5UVYVrMwNOFrZZjwk", function( data ) {
-				// 	  $( ".result" ).html("<h1>" + data.location + "</h1>" );
-				// 	  console.log(data.location);
-				// 	});
-				var address = 'New York City';
+
+				//Get lat/long of each address using Google Geocode API
+				var address = '5027 35th Ave. S. Seattle, WA';
 				var url = "http://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(address)+"&sensor=true";
 				$.getJSON(url, function(data) {
 			   if(data.status !== "OK") {
@@ -27,33 +23,49 @@
 			      var long = "";
 			      var error = "Address not found!";
 			    } else {
-			      var lat = data.results[0].geometry.location.lat;
-			      var long = data.results[0].geometry.location.lng;
+			       lat2 = data.results[0].geometry.location.lat;
+			       long2 = data.results[0].geometry.location.lng;
 			      var address = data.results[0].formatted_address;
 			   }
-			   $( ".result" ).html("<h1>" + long + "</h1>" );
+			   $( ".result" ).html("<h1>" + lat2 + long2 + "</h1>" );
 			 	});
 			});
 		</script>
 	</head>
 	<body>
-		<div class='result'>
-
-		</div>
-		<div class='row'>
-			<div class="col-md-8">
-				<div style='width: 100%;'>
-				  <div id="map" style='width: 100%; height: 800px;'></div>
-				</div>
+	<!-- 	<div class='result'>
+		</div> -->
+		<div class='row' id="content">
+			<div class='col-md-8 nopadding1' id='map2'>
+				<div id="map" style='width: 100%; height: 850px;'></div>
 				<div id="floating-panel">
 					 <input id="pac-input" class="controls" type="text" placeholder="City, Address, ZIP">
 					 <input type='submit' value='Search'>
 				</div>
-		</div>
-		<!-- 	<div id="map-container">
-			  <div id="map-canvas"></div>
-			</div> -->
+			</div>
+			<div class='col-md-4 nopadding2'>
+					<div class="panel-heading" id='chores'><h4>Chores</h4></div>
+			<table class="table table-hover">
+			  <thead>
+			  	<td>#</td>
+			  	<td>Name</td>
+			  	<td>Description</td>
+			  	<td>Location</td>
+			  	<td>Pay</td>
+			  </thead>
+			  <tbody>
+			  	<td>1</td>
+			  	<td>Walking the dog</td>
+			  	<td>Please walk my dog around the park</td>
+			  	<td>Gaswork Park</td>
+			  	<td>$50</td>
+			  </tbody>
+			</table>
 		</div>
 	</body>
 	<%= render 'layouts/googlemaps' %>
 </html>
+
+
+				
+

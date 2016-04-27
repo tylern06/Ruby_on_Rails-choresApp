@@ -4,7 +4,7 @@ class Chore < ActiveRecord::Base
   belongs_to :request
   belongs_to :network
 
-  validates :title, :description, :rate, :start, :end, :presence => true
+  validates :title, :description, :rate, :start, :end, :address, :city, :state, :presence => true
   # validate :future_event
   # validate :date_validation
 
