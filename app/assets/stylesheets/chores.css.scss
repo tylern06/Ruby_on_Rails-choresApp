@@ -17,3 +17,36 @@
    height: 384px;
    width: 100%;
  }
+ #floating-panel {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+}
+#chores {
+	text-align: center;
+	border-bottom: 1px solid lightgrey;
+}
+
+.nopadding1 {
+   /*padding-left: 0 !important;*/
+   padding-right: 0 !important;
+
+   margin: 0 !important;
+}
+.nopadding2 {
+   /*padding-left: 0 !important;*/
+   padding-left: 0 !important;
+ 
+   margin: 0 !important;
+}
+
+html, body
+{
+    height: 100%;
+}
+
+#content{
+		height: 100%;
+		width: 100%;
+}
+

@@ -1,4 +1,6 @@
 class ContractorsController < ApplicationController
+  before_action :require_login
+  
   def index
     session[:user_id] = 3
     @contractor = Client.find(session[:user_id])

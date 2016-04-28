@@ -1,4 +1,7 @@
 class ChoresController < ApplicationController
+  before_action :require_login, except: [:index, :new, :create]
+  before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
+
   def index
     # @chores = Chore.all
     # @hash = Gmaps4rails.build_markers(@chores) do |chore, marker|
@@ -9,6 +12,10 @@ class ChoresController < ApplicationController
 
   def show
     @chore = Chore.find(params[:id])
+  end
+
+  def show_client
+    @client_chore = Chore.find(params[:id])
   end
 
   def new
@@ -27,11 +34,22 @@ class ChoresController < ApplicationController
   end
 
   def edit
+    @client_chore = Chore.find(params[:id])
   end
 
   def update
     Chore.find(params[:id]).update(status:"Completed")
     redirect_to '/contractors'
+  end
+  
+  def update_client
+    chore = Chore.update(Chore.find(params[:id]), chore_params)
+    if chore.valid?
+      redirect_to clients_path
+    else
+      flash[:errors] = chore.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def destroy
