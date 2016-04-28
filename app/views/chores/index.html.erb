@@ -1,37 +1,4 @@
 <html>
-	<head>
-	<!-- google map api for search box to get location,addresses -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGnq_fwNZCytzP1F5UVYVrMwNOFrZZjwk&libraries=geometry,places,visualization"></script>
-		
-		<script>
-			$(document).ready(function(){
-				$.getJSON("http://ip-api.com/json/?callback=?", function(data) {
-		        table_body = "";
-		        // console.log("Hi", data)
-		        table_body += data.city
-		        // console.log(table_body);
-						longing = data.lon
-				    latty = data.lat
-				});
-
-				//Get lat/long of each address using Google Geocode API
-				var address = '5027 35th Ave. S. Seattle, WA';
-				var url = "http://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(address)+"&sensor=true";
-				$.getJSON(url, function(data) {
-			   if(data.status !== "OK") {
-			      var lat = "";
-			      var long = "";
-			      var error = "Address not found!";
-			    } else {
-			       lat2 = data.results[0].geometry.location.lat;
-			       long2 = data.results[0].geometry.location.lng;
-			      var address = data.results[0].formatted_address;
-			   }
-			   $( ".result" ).html("<h1>" + lat2 + long2 + "</h1>" );
-			 	});
-			});
-		</script>
-	</head>
 	<body>
 	<!-- 	<div class='result'>
 		</div> -->
@@ -47,24 +14,33 @@
 					<div class="panel-heading" id='chores'><h4>Chores</h4></div>
 			<table class="table table-hover">
 			  <thead>
-			  	<td>#</td>
 			  	<td>Name</td>
 			  	<td>Description</td>
 			  	<td>Location</td>
-			  	<td>Pay</td>
+			  	<td><p>Pay</p></td>
 			  </thead>
 			  <tbody>
-			  	<td>1</td>
-			  	<td>Walking the dog</td>
-			  	<td>Please walk my dog around the park</td>
-			  	<td>Gaswork Park</td>
-			  	<td>$50</td>
+			  	<% @chores.each do |chore| %>
+			  		<tr>
+			  			<% if chore.status == "Open" %>
+						  	<td><%= chore.title %></td>
+						  	<td><%= chore.description %></td>
+						  	<td><%= chore.address %> <%= chore.city %></td>
+						  	<td><%= number_to_currency(chore.rate) %></td>
+					  	<% end %>
+				  	</tr>
+				  <% end %>
 			  </tbody>
 			</table>
 		</div>
 	</body>
 	<%= render 'layouts/googlemaps' %>
 </html>
+		
+
+						
+
+	
 
 
 				

@@ -1,10 +1,11 @@
 class ChoresController < ApplicationController
   def index
-    # @chores = Chore.all
-    # @hash = Gmaps4rails.build_markers(@chores) do |chore, marker|
-    #   marker.lat chore.client.address
-    #   marker.lng chore.client.address
-    # end
+    @chores = Chore.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render :json => @chores}
+
+    end
   end
 
   def show

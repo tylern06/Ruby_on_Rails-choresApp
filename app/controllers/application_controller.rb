@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def current_user
     Client.find(session[:user_id]) if session[:user_id]
   end
+
+  def number_to_currency(number,options={})
+  	delegate_number_helper_method(:number_to_currency,number,options)
+  end
 end
