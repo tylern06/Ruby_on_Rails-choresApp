@@ -1,4 +1,5 @@
 class ChoresController < ApplicationController
+
   def index
     # @chores = Chore.all
     # @hash = Gmaps4rails.build_markers(@chores) do |chore, marker|
@@ -9,6 +10,8 @@ class ChoresController < ApplicationController
 
   def show
     @chore = Chore.find(params[:id])
+    @already_pending = Request.where(chore: params[:id]).where(contractor: session[:user_id])
+    @already_accepted = Network.where(chore: params[:id]).where(contractor: session[:user_id])
   end
 
   def new
