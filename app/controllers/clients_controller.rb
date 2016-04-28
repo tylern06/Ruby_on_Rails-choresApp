@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   before_action :require_login, except: [:new, :create]
-  before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_correct_user_profile, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @client_chores = Client.find(session[:user_id]).chores
@@ -8,7 +9,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-     
+     @client = Client.find(session[:user_id])
   end
 
   def new
@@ -25,17 +26,17 @@ class ClientsController < ApplicationController
   end
 
   def update
-    chore = Chore.update(Chore.find(params[:id]), chore_params)
-    if chore.valid?
+    client = Client.update(params[:id], client_params)
+    if client.valid?
       redirect_to clients_path
     else
-      flash[:errors] = chore.errors.full_messages
+      flash[:errors] = client.errors.full_messages
       redirect_to :back
     end
   end
 
   def edit
-    @client_chore = Chore.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   def destroy

@@ -12,12 +12,18 @@ class ApplicationController < ActionController::Base
   	redirect_to root_path if session[:user_id] == nil
   end
 
-  def require_correct_user
-  	client = Client.find(params[:id]).client
-  	redirect_to '/clients' if current_user != client
+  def require_correct_user_profile
+    client = Client.find(params[:id])
+    redirect_to'/clients' if current_user != client
   end
 
+  def require_correct_user
+  	client = Chore.find(params[:id]).client
+  	redirect_to '/clients' if current_user != client
+  end
+  
   def number_to_currency(number, options = {})
     delegate_number_helper_method(:number_to_currency, number, options)
   end
 end
+

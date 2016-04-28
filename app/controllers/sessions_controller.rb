@@ -14,8 +14,10 @@ class SessionsController < ApplicationController
       if client && client.authenticate(client_params[:password])
         session[:user_id] = client.id 
         if params[:optionsRadios] == "option1"
+          session[:login_type] = "option1"
           redirect_to clients_path
         else
+          session[:login_type] = "option2"
           redirect_to contractors_path
         end
       else 

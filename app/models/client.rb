@@ -13,5 +13,4 @@ class Client < ActiveRecord::Base
 
   validates :email, :presence => true, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
   
-  validates :password, length: { minimum: 2 }
 end

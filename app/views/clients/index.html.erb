@@ -6,9 +6,13 @@
 <body>
 	<div class="container" style="padding-top:50px;">
 	<div class="panel panel-default">
-	<div class="panel-heading">Your Profile (Client's)</div>
+	<div class="panel-heading">
+		<h3>Hello, <%= @client.name %>!</h3>
+		<h5>Client Profile</h5>
+	</div>
 	<div class="panel-body">
-		<div id="add_chore">
+	<div class="row">
+  		<div class="col-md-6">
 			<form action="/chores" method="post">
 				<% if flash[:errors] %>
 		            <% flash[:errors].each do |error| %> 
@@ -32,7 +36,8 @@
 				<div class="form-group">
 					<label for="chore_city">City:</label>
 					<input type="text" name="chore[city]" value='<%= @client.city %>'class="form-control">
-					State: <p><%= render 'layouts/states' %></p>
+					<label for="chore_state" class="chore_state">State:</label> 
+					<%= render 'layouts/states' %>
 				</div>
 				<div class="form-group">
 					<label for="chore_rate">Rate:</label>
@@ -49,12 +54,13 @@
 				 <button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>
-		<div id="chore_list">
+		<div class="col-md-6">
 			<table class="table table-bordered">
 				<h4>List of Chores</h4>
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th>Rate</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -63,15 +69,17 @@
 					<% if @client_chores %>
 						<tr>
 						<%  @client_chores.each do |chore| %>
-							<td><a href='/clients/<%= chore.id %>'><%= chore.title %></a></td>
+							<td><a href='/chores_client/<%= chore.id %>'><%= chore.title %></a></td>
+							<td><%= number_to_currency(chore.rate) %></td>
 							<td><%= chore.status %></td>
-							<td><a href='/clients/<%= chore.id %>/edit'>Edit</a> | <a href='/chores/<%= chore.id %>' data-method='delete' data-confirm='Are you sure?'>Delete</a></td>
+							<td><a href='/chores/<%= chore.id %>/edit'>Edit</a> | <a href='/chores/<%= chore.id %>' data-method='delete' data-confirm='Are you sure?'>Delete</a></td>
 						</tr>
 						<% end %>
 					<% end %>	
 				</tbody>
 			</table>
 		</div>
+	</div>
 	</div>
 	</div>
 	</div>

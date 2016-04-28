@@ -10,12 +10,6 @@
 .btn-default{
 	margin-left: 230px
 }
-#add_chore{
-	display: inline-block;
-	vertical-align: top;
-	margin-right: 100px;
-}
-#chore_list{
-	display: inline-block;
-	vertical-align: top;
+.chore_state, .client_state{
+	margin-top: 15px;
 }
