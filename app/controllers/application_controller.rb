@@ -26,3 +26,4 @@ class ApplicationController < ActionController::Base
     delegate_number_helper_method(:number_to_currency, number, options)
   end
 end
+

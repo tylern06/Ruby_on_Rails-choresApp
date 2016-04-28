@@ -3,15 +3,18 @@ class ChoresController < ApplicationController
   before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @chores = Chore.all
-    # @hash = Gmaps4rails.build_markers(@chores) do |chore, marker|
-    #   marker.lat chore.client.address
-    #   marker.lng chore.client.address
-    # end
+    @chores = Chore.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render :json => @chores}
+
+    end
   end
 
   def show
     @chore = Chore.find(params[:id])
+    @already_pending = Request.where(chore: params[:id]).where(contractor: session[:user_id])
+    @already_accepted = Network.where(chore: params[:id]).where(contractor: session[:user_id])
   end
 
   def show_client

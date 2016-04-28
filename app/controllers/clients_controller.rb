@@ -2,6 +2,7 @@ class ClientsController < ApplicationController
   before_action :require_login, except: [:new, :create]
   before_action :require_correct_user_profile, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @client_chores = Client.find(session[:user_id]).chores
     @client = Client.find(session[:user_id])
