@@ -5,83 +5,35 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var locations = [];
-				//get location via IP address
-				// $.getJSON("http://ip-api.com/json/?callback=?", function(data) {
-		  //       table_body = "";
-		  //       table_body += data.city
-				// 		// longing = data.lon
-				//   //   latty = data.lat
-				//   		latty = 47.5527
-				//   		longing = -122.1479
-				// });
+		var locations2;
 
+		//get JSON data from Chores table
+		$.get('/chores',function(result){
+			// console.log('result',result);
+			locations2 = result;
+	
+				//api request to get current ip location
+				$.getJSON("http://ip-api.com/json/?callback=?", function(data) {
+			        table_body = "";
+			        table_body += data.city;
+							longing = data.lon;
+					    latty = data.lat;
+					    console.log('long', longing)
+					    console.log('lat', latty)
 
-				function getLocations(result, i, locations, callback){
-					if(!i){var i = 0}
-					if(result.length == i) { return callback(locations)}
-						var addressArr = [];
-						console.log(result);
-						var pay, address = '';
-						pay = "Pay: $" + result[i].rate;
-						addressArr.push(result[i].title + ", " + pay);
-						address = result[i].address + " " + result[i].city + " " + result[i].state;
-						// addressArr.push(pay);
-						console.log(address);
-						console.log(pay);
-
-						//Get lat/long of each address using Google Geocode API
-					var url = "http://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(address)+"&sensor=true";
-					$.get(url, function(data) {
-					   if(data.status !== "OK") {
-					      var lat = "";
-					      var long = "";
-					      var error = "Address not found!";
-					      console.log(error);
-					  }else {
-					      var lat2 = data.results[0].geometry.location.lat;
-					      var long2 = data.results[0].geometry.location.lng;
-					      // var address = data.results[0].formatted_address;
-					      addressArr.push(lat2);
-					   		addressArr.push(long2);
-					   		locations.push(addressArr);
-					   		return getLocations(result, i + 1, locations, callback)
-
-							   }	
-						 	}, 'json');
-						 	return false;	
-				}
-				//get JSON data from Chores table
-
-				$.get('/chores',function(result){
-					console.log('result',result);
-
-						getLocations(result, 0, locations, function(data){
-							locations = data;
-							console.log('hi',locations);
-							//calls the initMap(), initAutocomplete(), createMarkers functions after get locations request is complete
-							google.maps.event.addDomListener(window, 'load', function() { 
-								initMap();
-								initAutocomplete();
-								createMarkers();
-							});
-						})
-				},'json');
-		// var locations = [
-	 //    ["Walking Dog, Pay: $25", 47.669874, -122.310221],
-	 //    ['Moving Furniture, Pay: $50', 47.559866, -122.286499],
-	 //    ['Mowing the Lawn, Pay: $75', 47.645631, -122.334353],
-	 //    ['Washing Dishes, Pay: $10', 47.610377, -122.200679],
-	 //    ['Deliver Take Out Order, Pay: $10', 47.620423, -122.349355]
-	 //  ];
-	 		console.log("hello",locations);
-
-		latty = 47.5527
-		longing = -122.1479
-
+				//calls the initMap(), initAutocomplete(), createMarkers functions after get locations request is complete
+				google.maps.event.addDomListener(window, 'load', function() {
+					initMap();
+					initAutocomplete();
+					createMarkers();
+				});
+			})
+			},'json');
+	 		
 		var map;
 		//initialize the Google Map in HTML document
 		function initMap() {
+				//get location via IP address
 		  map = new google.maps.Map(document.getElementById('map'), {
 		    zoom: 12,
 		    center: {
@@ -91,7 +43,7 @@
 		    mapTypeId: google.maps.MapTypeId.MAP
 		  });
 		}
-
+		//create google searchbox
 		function initAutocomplete() {
 		  // Create the search box and link it to the UI element.
 		  var input = document.getElementById('pac-input');
@@ -143,18 +95,18 @@
 		}
 
 		function createMarkers(){
-			console.log("here", locations)
+			console.log('my address',locations2);
 			var infowindow = new google.maps.InfoWindow();
 	    var marker, j;
-	    for (j = 0; j < locations.length; j++) {  
+	    for (j = 0; j < locations2.length; j++) {  
 	      marker = new google.maps.Marker({
-	        position: new google.maps.LatLng(locations[j][1], locations[j][2]),
+	        position: new google.maps.LatLng(locations2[j].latitude, locations2[j].longitude),
 	        map: map
 	      });
 
 	      google.maps.event.addListener(marker, 'click', (function(marker, j) {
 	        return function() {
-	          infowindow.setContent(locations[j][0]);
+	          infowindow.setContent("<p>"+locations2[j].title+ "</p>"+ "<p>" + "Pay: $" + locations2[j].rate + "</p>");
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, j));
@@ -170,6 +122,10 @@
 	});
 </script>
 	
+							
+
+
+
 		
 
 

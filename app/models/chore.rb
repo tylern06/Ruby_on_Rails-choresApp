@@ -3,6 +3,11 @@ class Chore < ActiveRecord::Base
   belongs_to :contractor, class_name:"Client"
   belongs_to :request
   belongs_to :network
+  def full_street_address
+    [address, city, state].compact.join(', ')
+  end
+  geocoded_by :full_street_address
+  after_validation :geocode, :if => :address_changed?
 
   validates :title, :description, :rate, :start, :end, :address, :city, :state, :presence => true
   # validate :future_event
