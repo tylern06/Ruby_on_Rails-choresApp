@@ -6,10 +6,12 @@ class ClientsController < ApplicationController
   def index
     @client_chores = Client.find(session[:user_id]).chores
     @client = Client.find(session[:user_id])
+    @time = Time.now
   end
 
   def show
      @client = Client.find(session[:user_id])
+     @contractor = Request
   end
 
   def new

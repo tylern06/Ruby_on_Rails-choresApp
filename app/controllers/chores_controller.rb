@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
-  before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_correct_user, only: [:edit, :destroy]
 
   def index
     @chores = Chore.all
@@ -19,6 +19,7 @@ class ChoresController < ApplicationController
 
   def show_client
     @client_chore = Chore.find(params[:id])
+    @contractors = Request.where(chore: params[:id])
   end
 
   def new
@@ -38,6 +39,8 @@ class ChoresController < ApplicationController
 
   def edit
     @client_chore = Chore.find(params[:id])
+    @start_time = Chore.find(params[:id]).start
+    @end_time = Chore.find(params[:id]).end
   end
 
   def update

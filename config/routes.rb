@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	get 'chores_client/:id' => 'chores#show_client'
   patch 'chores/:id/update' => 'chores#update_client'
   post 'requests/:id' => 'requests#create'
+  post 'requests/:id/status' => 'requests#update'
   # devise_for :users
 end
   
