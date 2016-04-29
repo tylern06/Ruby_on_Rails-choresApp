@@ -12,7 +12,11 @@
 	<div class="chore_info">
 		<div class="panel panel-default">
 		<!-- Default panel contents -->
-			<div class="panel-heading">Selected Chore</div>
+			<% if session[:user_id] == @chore.client.id %>
+				<div class="panel-heading">My Chore</div>
+			<% else %>
+				<div class="panel-heading">Selected Chore</div>
+			<% end %>
 			<div class="panel-body">
 				<table class="table" style="width:400px;">
 					<tr>
@@ -30,14 +34,18 @@
 				</table>
 				<div class="accept_button">
 					<% if @already_pending.empty? %>
-					<% if @already_accepted.empty? %>
-					<% if @chore.client.id != session[:user_id] %>
-					<form action='/requests/<%= @chore.id %>' method='post' style="display:inline-block;">
-						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-						<button type='submit'>Accept</button>&nbsp;
-					</form>				
-					<% end %>
-					<% end %>
+						<% if @already_accepted.empty? %>
+							<% if @chore.client.id != session[:user_id] %>
+								<% if session[:login_type] == 'option2' %>
+									<form action='/requests/<%= @chore.id %>' method='post' style="display:inline-block;">
+										<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+										<button type='submit'>Accept</button>&nbsp;
+									</form>				
+								<% else%>
+									<p>*Please sign in as a contractor to accept the chore.</p>
+								<% end %>
+							<% end %>
+						<% end %>
 					<% end %>
 				</div>
 			</div>

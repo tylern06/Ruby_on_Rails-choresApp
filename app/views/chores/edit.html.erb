@@ -5,12 +5,7 @@
 </head>
 <body>
 	<div class="container">
-		<% if flash[:errors] %>
-            <% flash[:errors].each do |error| %> 
-                <h4 class='errors'><li><%= error %></li></h4>
-            <% end %>
-        <% end %>
-        <div class="container" style="padding-top:50px;">
+			<div class="container" style="padding-top:50px;">
 	    <div class="panel panel-default">
 	    <div class="panel-heading"><h3>Edit Chore</h3><h5>(Status: <%= @client_chore.status %>)</h5></div>
 	    <div class="panel-body">

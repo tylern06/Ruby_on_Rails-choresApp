@@ -12,15 +12,20 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   </head>
   <body>
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %> 
+      <h4 class='errors'><li><%= error %></li></h4>
+      <% end %>
+    <% end %>
     <header>
-
       <%= render 'layouts/navigation' unless current_page?(root_path) %>
       <div id='container2'>
-        </header>
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-      </div>
-
+    </header>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
+
 
