@@ -2,12 +2,11 @@ class ChoresController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
   before_action :require_correct_user, only: [:edit, :destroy]
 
-  def index
+   def index
     @chores = Chore.all
     respond_to do |format|
       format.html {render :index}
       format.json {render :json => @chores}
-
     end
   end
 
@@ -63,9 +62,9 @@ class ChoresController < ApplicationController
     redirect_to clients_path
   end
   
-
   private
     def chore_params
       params.require(:chore).permit(:title, :description, :rate, :start, :end, :address, :city, :state)
     end 
 end
+

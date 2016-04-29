@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427210035) do
+ActiveRecord::Schema.define(version: 20160429013303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160427210035) do
     t.string   "state"
     t.string   "city"
     t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "chores", ["client_id"], name: "index_chores_on_client_id", using: :btree

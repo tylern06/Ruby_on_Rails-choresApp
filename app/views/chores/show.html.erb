@@ -28,8 +28,7 @@
 						<td><%= number_to_currency(@chore.rate) %></td>
 					</tr>
 				</table>
-				<div class="accept_back_buttons">
-
+				<div class="accept_button">
 					<% if @already_pending.empty? %>
 					<% if @already_accepted.empty? %>
 					<% if @chore.client.id != session[:user_id] %>
@@ -40,7 +39,6 @@
 					<% end %>
 					<% end %>
 					<% end %>
-					<a href="/contractors">Back</a>
 				</div>
 			</div>
 			</div>
