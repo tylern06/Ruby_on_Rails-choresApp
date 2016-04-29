@@ -1,5 +1,11 @@
 <!-- <link href="/assets/stylesheets/scrolling-nav.css.scss" media="screen" rel="stylesheet" /> -->
-​
+​<script type="text/javascript">
+  $(document).ready(function() {
+    $('.carousel').carousel({
+      interval: 2800
+    })
+  });
+</script>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -12,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="page-scroll" href="#home"><img class="img-responsive" width='180' height='90' src="/assets/swept1.png" alt=""></a>
+                <a class="page-scroll" href="#home"><img class="img-responsive" width='180' height='100' src="/assets/sweptorange.png" style="margin-top:8px;"></a>
                 <!-- <a class="navbar-brand topnav" href="#">Home</a> -->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -21,7 +27,7 @@
                     <li>
                         <form action="/chores" method="get" class="navbar-brand topnav">
                       <!--   <input type="submit" value="Chores" > -->
-                            <button type="submit" class="btn btn-info btn-sm">Chores</button>
+                            <button type="submit" class="btn btn-sm colorf">Chores</button>
                         <!-- <a class="navbar-brand topnav" href="/chores">Chores</a> -->
                         </form>
                     </li>
@@ -29,26 +35,26 @@
                         <a class="page-scroll" href="#page-top"></a>
                      </li>
                     <li>
-                        <a class="page-scroll" href="#services"><button type="button" class="btn btn-info btn-sm">Services</button></a>
+                        <a class="page-scroll" href="#services"><button type="button" class="btn colorf btn-sm">Services</button></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact"><button type="button" class="btn btn-info btn-sm">Contact</button></a>
+                        <a class="page-scroll" href="#contact"><button type="button" class="btn colorf btn-sm">Contact</button></a>
                     </li>
                     <% if !current_user %>
                         <li>
-                            <a href='/clients/new'><button type="button" class="btn btn-success btn-sm">Register</button></a>
+                            <a href='/clients/new'><button type="button" class="btn coloro btn-sm">Register</button></a>
                         </li>
                     <% end %>
                     <% if current_user %>
                         <% if session[:login_type] == "option1" %>  
-                            <a class="navbar-brand topnav" href="/clients"><button type="button" class="btn btn-info btn-sm">Profile</button></a>
+                            <a class="navbar-brand topnav" href="/clients"><button type="button" class="btn colorf btn-sm">Profile</button></a>
                         <% else %>
-                            <a class="navbar-brand topnav" href="/contractors"><button type="button" class="btn btn-info btn-sm">Profile</button></a>
+                            <a class="navbar-brand topnav" href="/contractors"><button type="button" class="btn colorf btn-sm">Profile</button></a>
                         <% end %>
                     <% end %>
                     <% if !current_user %>
                         <li class="dropdown" id="menuLogin">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><button type="button" class="btn btn-success btn-sm">Login</button></a>
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><button type="button" class="btn coloro btn-sm">Login</button></a>
                             <div class="dropdown-menu" style="padding:17px;">
                               <form action='/sessions' method='post' class="form" id="formLogin">
                                 <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> 
@@ -74,7 +80,7 @@
                             </div>
                         </li>
                     <% else %>
-                        <a class="navbar-brand topnav" href='/sessions/<%= session[:user_id] %>'data-method='delete'><button type="button" class="btn btn-warning btn-sm">Logout</button></a>
+                        <a class="navbar-brand topnav" href='/sessions/<%= session[:user_id] %>'data-method='delete'><button type="button" class="btn coloro btn-sm">Logout</button></a>
                     <% end %>    
 
                       </form>
@@ -88,25 +94,42 @@
     ​
     <!-- Header -->
     <section id="home" class="home-section">
-    <!-- <a name="home"></a> -->
     <div class="intro-header">
         <div class="container">
     ​
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                       <!--  <h1>SweptAway</h1> -->
-                        <p id="slogan">Get Your Chores Swept Away</p>
+                        <p id="slogan">Get your chores <br>swept away.</p>
                   </div>
                 </div>
             </div>
     ​
         </div>
-        <!-- /.container -->
     ​  </div>
     </section>
     <!-- /.intro-header -->
-    ​
+<!--      <div class="carousel slide">
+      
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="design fill1"></div>
+                <div class="carousel-caption">
+                    <h2>Get Your Chores Swept Away</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="design fill2"></div>
+               
+            </div>
+            <div class="item">
+                <div class="design fill3" ></div>
+                
+            </div>
+        </div>
+
+    </div>   ​
+
     <!-- Page Content -->
     <section id="services" class="services-section">
     <!-- <a  name="services"></a> -->
@@ -117,12 +140,12 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Have your dishes washed</h2>
-                    <p class="lead">Give yourself more free time</p>
+                    <h1 class="section-heading">Have your dishes washed</h1>
+                    <h3 class="lead">Give yourself more free time</h3>
                 </div>
                 <div class="col-lg-5 col-lg-2 col-md-4">
                     <br>
-                    <img class="img-responsive" width='350' height='100' src="/assets/dish.png" alt="">
+                    <img class="img-responsive" width='350' height='100' src="/assets/dish2.png" alt="">
                 </div>
             </div>
     ​
@@ -139,11 +162,11 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Get your lawn mowed</h2>
-                    <p class="lead">Hire someone to mow your lawn while you get to do things that you love</p>
+                    <h1 class="section-heading">Get your lawn mowed</h1>
+                    <h3 class="lead">Hire someone to mow your lawn while you get to do things that you love</h3>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" width='350' height='100' src="/assets/lawn.png" alt="">
+                    <img class="img-responsive" width='350' height='100' src="/assets/lawn2.png" alt="">
                 </div>
             </div>
     ​
@@ -161,11 +184,11 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Have your dogs walked</h2>
-                    <p class="lead">We'll walk your dog when you're busy with work</p>
+                    <h1 class="section-heading">Have your dogs walked</h1>
+                    <h3 class="lead">We'll walk your dog when you're busy with work</h3>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" width='350' height='100' src="/assets/dog.png" alt="">
+                    <img class="img-responsive" width='350' height='100' src="/assets/dog2.png" alt="">
                 </div>
             </div>
     ​
@@ -233,4 +256,12 @@
         </div>
     </footer>
 </body>
+
+
+
+
+
+ 
+
+
 

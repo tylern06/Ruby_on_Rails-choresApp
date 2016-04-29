@@ -13,7 +13,7 @@
 
             <form action="/" action="get">
                 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                <input type='image' src="/assets/swept1.png" class="img-responsive" width='180' height='90' alt='Home'>
+                <input type='image' src="/assets/sweptorange.png" class="img-responsive" width='180' height='100' style='margin-top:8px;' alt='Home'>
             </form>
             
         </div>
@@ -22,25 +22,25 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form action="/chores" method="get" class="navbar-brand topnav">
-                        <button type="submit" class="btn btn-info btn-sm">Chores</button>
+                        <button type="submit" class="btn colorf btn-sm">Chores</button>
                     <!-- <a class="navbar-brand topnav" href="/chores">Chores</a> -->
                     </form>
                 </li>
                 <li>
                     <% if session[:login_type] == "option1" %>
-                        <a href="/clients"><button type="button" class="btn btn-info btn-sm">Dashboard</button></a>
+                        <a href="/clients"><button type="button" class="btn colorf btn-sm">Dashboard</button></a>
                         <% else %>
-                        <a href="/contractors"><button type="button" class="btn btn-info btn-sm">Dashboard</button></a>
+                        <a href="/contractors"><button type="button" class="btn colorf btn-sm">Dashboard</button></a>
 
                     <% end %>
                 </li>
                 <li>
-                    <a href="/clients/<%= session[:user_id] %>"><button type="button" class="btn btn-info btn-sm">Profile</button></a>
+                    <a href="/clients/<%= session[:user_id] %>"><button type="button" class="btn colorf btn-sm">Profile</button></a>
                 </li>
                 <li>
                     <% if !current_user %>
                     <li class="dropdown" id="menuLogin">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><button type="button" class="btn btn-success btn-sm">Login</button></a>
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><button type="button" class="btn coloro btn-sm">Login</button></a>
                         <div class="dropdown-menu" style="padding:17px;">
                           <form action='/sessions' method='post' class="form" id="formLogin">
                             <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> 
@@ -66,7 +66,7 @@
                         </div>
                     </li>
                 <% else %>
-                    <a href='/sessions/<%= session[:user_id] %>'data-method='delete'><button type="button" class="btn btn-warning btn-sm">Logout</button></a>
+                    <a href='/sessions/<%= session[:user_id] %>'data-method='delete'><button type="button" class="btn coloro btn-sm">Logout</button></a>
                 <% end %>    
                 </li>
             </ul>
