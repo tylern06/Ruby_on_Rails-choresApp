@@ -21,7 +21,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="navbar-brand topnav" href="/chores">Chores</a>
+                    <form action="/chores" method="get" class="navbar-brand topnav">
+                    <input type="submit" value="Chores">
+                    <!-- <a class="navbar-brand topnav" href="/chores">Chores</a> -->
+                    </form>
                 </li>
                 <li>
                     <% if session[:login_type] == "option1" %>
