@@ -20,7 +20,8 @@
                 <ul class="nav navbar-nav navbar-right main-nav">
                     <li>
                         <form action="/chores" method="get" class="navbar-brand topnav">
-                        <input type="submit" value="Chores" >
+                      <!--   <input type="submit" value="Chores" > -->
+                            <button type="submit" class="btn btn-info btn-sm">Chores</button>
                         <!-- <a class="navbar-brand topnav" href="/chores">Chores</a> -->
                         </form>
                     </li>
@@ -28,26 +29,26 @@
                         <a class="page-scroll" href="#page-top"></a>
                      </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services"><button type="button" class="btn btn-info btn-sm">Services</button></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact"><button type="button" class="btn btn-info btn-sm">Contact</button></a>
                     </li>
                     <% if !current_user %>
                         <li>
-                            <a href='/clients/new'>Register</a>
+                            <a href='/clients/new'><button type="button" class="btn btn-success btn-sm">Register</button></a>
                         </li>
                     <% end %>
                     <% if current_user %>
                         <% if session[:login_type] == "option1" %>  
-                            <a class="navbar-brand topnav" href="/clients">Profile</a>
+                            <a class="navbar-brand topnav" href="/clients"><button type="button" class="btn btn-info btn-sm">Profile</button></a>
                         <% else %>
-                            <a class="navbar-brand topnav" href="/contractors">Profile</a>
+                            <a class="navbar-brand topnav" href="/contractors"><button type="button" class="btn btn-info btn-sm">Profile</button></a>
                         <% end %>
                     <% end %>
                     <% if !current_user %>
                         <li class="dropdown" id="menuLogin">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Login</a>
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><button type="button" class="btn btn-success btn-sm">Login</button></a>
                             <div class="dropdown-menu" style="padding:17px;">
                               <form action='/sessions' method='post' class="form" id="formLogin">
                                 <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> 
@@ -73,7 +74,7 @@
                             </div>
                         </li>
                     <% else %>
-                        <a class="navbar-brand topnav" href='/sessions/<%= session[:user_id] %>'data-method='delete'>Logout</a>
+                        <a class="navbar-brand topnav" href='/sessions/<%= session[:user_id] %>'data-method='delete'><button type="button" class="btn btn-warning btn-sm">Logout</button></a>
                     <% end %>    
 
                       </form>

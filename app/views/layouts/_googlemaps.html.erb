@@ -104,20 +104,14 @@
 	        map: map
 	      });
 
-	      google.maps.event.addListener(marker, 'click', (function(marker, j) {
+	      google.maps.event.addListener(marker, 'mouseover', (function(marker, j) {
 	        return function() {
-	          infowindow.setContent("<p>"+locations2[j].title+ "</p>"+ "<p>" + "Pay: $" + locations2[j].rate + "</p>");
+	          infowindow.setContent("<p class='info'>"+locations2[j].title+ "</p>"+ "<p class='info'>" + "Pay: $" + locations2[j].rate + "</p>");
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, j));
-	      // hoverMarkers();
 	    }
 		 }
-		function hoverMarkers(marker) {
-			marker.addListener('mouseover', function() {
-			infowindow.open(marker.get('map'), marker);
-			});
-		}
 	//end of document ready
 	});
 </script>
