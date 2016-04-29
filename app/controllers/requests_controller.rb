@@ -19,6 +19,12 @@ class RequestsController < ApplicationController
 	end
 
 	def update
+		Request.find(params[:id]).chore.update(status: "In Progress")
+
+		request = Request.find(params[:id])
+
+		Network.create(client_id: request.client_id, contractor_id: request.contractor_id, chore_id: request.chore_id)
+		redirect_to '/chores_client/' + request.chore_id.to_s
 	end
 
 	def edit
@@ -27,3 +33,4 @@ class RequestsController < ApplicationController
 	def destroy
 	end
 end
+
