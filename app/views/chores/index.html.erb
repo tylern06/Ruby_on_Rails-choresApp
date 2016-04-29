@@ -23,8 +23,8 @@
 			  	<% @chores.each do |chore| %>
 			  		<tr>
 			  			<% if chore.status == "Open" %>
-						  	<td><%= chore.title %></td>
-						  	<td><%= chore.description %></td>
+						  	<td><a href="/chores/<%= chore.id %>"><%= chore.title %></a></td>
+						  	<td><a href="/chores/<%= chore.id %>"><%= chore.description %></a></td>
 						  	<td><%= chore.address %> <%= chore.city %></td>
 						  	<td><%= number_to_currency(chore.rate) %></td>
 					  	<% end %>

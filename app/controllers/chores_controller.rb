@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   before_action :require_login, except: [:index, :new, :create]
-  before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @chores = Chore.all

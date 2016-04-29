@@ -3,7 +3,7 @@
     <select class="form-control" name="chore[state]">
     <option value='<%= Client.find(session[:user_id]).state %>'><%= Client.find(session[:user_id]).state %></option>
     <% else %>
-    <select class="form-control" name="client[state]">
+    <select name="client[state]">
     <% end %>
     <option value="AL">AL</option>
     <option value="AK">AK</option>
